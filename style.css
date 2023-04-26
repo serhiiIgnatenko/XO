@@ -38,7 +38,7 @@ body {
 }
 
 .field {
-	width: min(100%, 650px);
+	width: min(100%, 600px);
 	aspect-ratio: 1;
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
