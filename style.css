@@ -68,11 +68,11 @@ body {
 }
 
 .cell.cross:checked::after {
-	background-image: url(/image/cross.svg);
+	background-image: url(./image/cross.svg);
 }
 
 .cell.circle:checked::after {
-	background-image: url(/image/circle.svg);
+	background-image: url(./image/circle.svg);
 }
 
 .cell:disabled {
