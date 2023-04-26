@@ -17,7 +17,7 @@ body {
 	padding: 20px;
 	min-height: 100%;
 	display: grid;
-	grid-template-rows: 160px 1fr;
+	grid-template-rows: 140px 50px 1fr;
 	grid-template-columns: 1fr;
 	justify-items: center;
 	gap: 25px;
@@ -37,6 +37,34 @@ body {
 	align-self: center;
 }
 
+.information-line {
+	width: auto;
+	max-width: 300px;
+	font-size: 26px;
+	text-align: center;
+}
+
+.information-line::before {
+	content: '';
+	position: relative;
+	width: 20px;
+	aspect-ratio: 1;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	margin-right: 10px;
+	transform: translate(0px, 1px);
+}
+
+.information-line.circle::before {
+	background-image: url(./image/circle.svg);
+}
+
+.information-line.cross::before {
+	background-image: url(./image/cross.svg)
+}
+
 .field {
 	width: min(100%, 600px);
 	aspect-ratio: 1;
@@ -45,6 +73,7 @@ body {
 	gap: 10px;
 	margin: auto;
 	background-color: darkslateblue;
+	position: relative;
 }
 
 .cell {
@@ -79,8 +108,25 @@ body {
 	pointer-events: none;
 }
 
+.show {
+	position: absolute;
+	inset: 0;
+	font-size: 22px;
+	color: darkslateblue;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	text-align: center;
+}
+
 @media (width > 750px) {
 	.field {
 		gap: 25px;
+	}
+
+	.show {
+		font-size: 50px;
 	}
 }

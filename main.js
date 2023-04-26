@@ -1,6 +1,7 @@
 let fieldOfPlay = document.getElementById('field');
 let reset = document.querySelector('.reset');
 let cellArr = fieldOfPlay.querySelectorAll('.cell');
+let informationContainer = document.querySelector('.information-line');
 let arrX = [];
 let arrO = [];
 let counter = 0;
@@ -68,6 +69,7 @@ function changeGamer() {
 		gamer = 1;
 		courentArr = arrX;
 	}
+	changingPlayerInformation(gamer);
 	// console.log(`next gamer ${gamer}`)
 	// console.log(`---------------`)
 }
@@ -76,11 +78,13 @@ function endGame(flag) {
 	let informeText = ''
 	if (typeof (flag) == 'number' && flag === 9) {
 		// console.log('no more moves. draw.');
-		informeText = 'no more moves. Game restart';
+		informeText = `No more moves.
+		Game restart`;
 	} else {
 		// console.log('win');
 		let nameWiner = gamer == 1 ? 'Cross' : "Circle";
-		informeText = `win gamer ${nameWiner}. Game restart`;
+		informeText = `Winner ${nameWiner}.
+		Game restart`;
 		disabledCell();
 	};
 	// resetGame();
@@ -89,14 +93,16 @@ function endGame(flag) {
 }
 
 function resetGame(informeText = 'Game restart') {
-	console.log(informeText);
-	alert(informeText);
+	// console.log(informeText);
+	// alert(informeText);
+	finallMessage(informeText);
 	arrO.length = 0;
 	arrX.length = 0;
 	counter = 1;
 	courentArr = arrX;
 	gamer = 1;
 	clearCell();
+	changingPlayerInformation(gamer);
 
 	// console.log('arrX', arrX)
 	// console.log('arrO', arrO)
@@ -145,7 +151,7 @@ function addClassName(elem) {
 
 function disabledCell() {
 	for (const cell of cellArr) {
-		console.log(cell);
+		// console.log(cell);
 		if (!cell.hasAttribute('disabled')) {
 			cell.setAttribute('disabled', 'disabled');
 		}
@@ -160,12 +166,31 @@ function clearCell() {
 	};
 }
 
+function finallMessage(msg) {
+	// console.log('finallMessage');
+	let msgContainer = document.createElement('div');
+	msgContainer.classList.add('msg');
+	msgContainer.classList.add('show');
+	fieldOfPlay.appendChild(msgContainer);
+	msgContainer.innerText = `${msg}`;
+
+	setTimeout(() => {
+		msgContainer.classList.remove('show');
+		fieldOfPlay.querySelector('.msg').remove();
+	}, 2500)
+}
+
+function changingPlayerInformation(gamer) {
+	if (gamer === 1) {
+		informationContainer.classList.remove('circle');
+		informationContainer.classList.add('cross');
+	}
+	if (gamer === 2) {
+		informationContainer.classList.remove('cross');
+		informationContainer.classList.add('circle');
+	}
+}
+
+changingPlayerInformation(gamer);
+
 reset.addEventListener('click', () => resetGame());
-
-// arrX.push(11, 12, 22, 31, 23);
-// let c = detector(courentArr, winCombination);
-
-// arrO.push(13, 21, 32, 33);
-// c = detector(courentArr, winCombination);
-
-// console.log(c);
